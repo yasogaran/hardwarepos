@@ -60,21 +60,10 @@ jobs:
         flutter config --no-analytics
         flet build macos --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
 
-    - name: Investigate build output structure
-      run: |
-        echo "=== Build directory contents ==="
-        ls -la build/
-        echo "=== macOS build directory contents ==="
-        ls -la build/macos/
-        echo "=== Looking for app bundles and installers ==="
-        find build/macos -name "*.app" -o -name "*.dmg" -o -name "*.pkg" | head -10
-        echo "=== Size analysis of major components ==="
-        du -sh build/macos/* | sort -hr | head -10
-
     - name: Upload macOS Artifact
       uses: actions/upload-artifact@v4.3.4
       with:
         name: macos-build-artifact
-        path: build/macos
+        path: build/macos/*.app
         if-no-files-found: warn
         overwrite: false
