@@ -48,8 +48,8 @@ jobs:
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
 
-    - name: Increase open files limit
-      run: ulimit -n 4096
+    - name: Increase open files limit 
+      run: ulimit -n 65536
     
     - name: Flet Build macOS
       run: |
