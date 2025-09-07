@@ -49,11 +49,7 @@ jobs:
         flutter-version: ${{ env.FLUTTER_VERSION }}
 
     - name: Increase open files limit
-      run: |
-        # Increase both soft and hard limits for file descriptors
-        ulimit -n 65536
-        # Verify the new limit
-        ulimit -n
+      run: ulimit -n 4096
     
     - name: Flet Build macOS
       run: |
